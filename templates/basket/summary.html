@@ -1,0 +1,15 @@
+{% extends '../onlinestore/base.html'  %}
+{% load static %}
+{% block 'content' %}
+<main>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+        <h2>Summary</h2>
+        {% for item in baskett %}
+        {% endfor %}
+
+    </div>
+  </div>
+</main>
+{% endblock %}

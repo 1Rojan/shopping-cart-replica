@@ -15,3 +15,11 @@ def add_basket(request):
 
         response = JsonResponse({'qty': basketqty})
         return response
+
+def basket_summary(request):
+    basket = Basket(request)
+    context = {
+        'basket': basket
+
+    }
+    return render(request, 'basket/summary.html', context)

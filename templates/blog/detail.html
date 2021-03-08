@@ -1,0 +1,64 @@
+{% extends './base.html' %}
+{% block title %} Home {% endblock%}
+{% block 'content' %}
+<main class="container">
+    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
+            <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and
+                efficiently about what’s most interesting in this post’s contents.</p>
+<!--            <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>-->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row g-0 border rounded overflow-hidden  mb-4 shadow-sm ">
+                <div class="col-1">
+                    <img class="bd-placeholder-img rounded-circle p-3" style="height:90px;" src="{{post.author.profile.image.url}}" alt="">
+                </div>
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-success">Author: {{post.author}}</strong>
+                    <h3 class="mb-0">{{post.title}} </h3>
+                    <div class="mb-1 text-muted"> <small>{{post.date_posted}}</small></div>
+                    <p class="mb-auto">{{post.content}}</p>
+                    {% if post.author == user %}
+                    <div class="d-flex">
+                    <a href="{% url 'blog:update' post.id %}"><button class="btn btn-sm btn-info m-2">Edit</button></a>
+                    <a href="{% url 'blog:update' post.id %}"><button class="btn btn-sm btn-danger m-2">Delete</button></a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="p-4">
+                <h4 class="fst-italic">Side Bar</h4>
+                <ol class="list-unstyled mb-0">
+                    <li><a href="#">March 2014</a></li>
+                    <li><a href="#">February 2014</a></li>
+                    <li><a href="#">January 2014</a></li>
+                    <li><a href="#">December 2013</a></li>
+                    <li><a href="#">November 2013</a></li>
+                    <li><a href="#">October 2013</a></li>
+                    <li><a href="#">September 2013</a></li>
+                    <li><a href="#">August 2013</a></li>
+                    <li><a href="#">July 2013</a></li>
+                    <li><a href="#">June 2013</a></li>
+                    <li><a href="#">May 2013</a></li>
+                    <li><a href="#">April 2013</a></li>
+                </ol>
+            </div>
+        </div>
+
+    </div><!-- /.row -->
+
+</main><!-- /.container -->
+<!--{% for post in posts %}-->
+<!--    <h2 class="myh2">{{post.title}}</h2>-->
+<!--    <p>By{{post.author}} on {{post.date_posted}}</p>-->
+<!--    <p>{{post.content}}</p>-->
+<!--{% endfor %}-->
+
+{% endblock %}

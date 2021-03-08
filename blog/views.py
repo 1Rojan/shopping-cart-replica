@@ -1,7 +1,8 @@
-from django.shortcuts import render,HttpResponse
-from . models import Post
-from django.views.generic import ListView, DetailView,CreateView, UpdateView, DeleteView
+from django.shortcuts import render, HttpResponse
+from .models import Post
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
 
 # def home(request):
 #     posts = Post.objects.all()
@@ -25,6 +26,7 @@ class PostDetailView(DetailView):
     template_name = 'blog/detail.html'
     context_object_name = 'post'
 
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
@@ -33,7 +35,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'content']
 
@@ -47,9 +50,11 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
             return True
         return False
 
+
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = '/blog/'
+
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:

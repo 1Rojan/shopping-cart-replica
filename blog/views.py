@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse
-from .models import Post
+from django.shortcuts import render, HttpResponse, get_object_or_404
+from .models import Post, Category
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -10,7 +10,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 #         'posts': posts
 #     }
 #     return render(request, 'blog/home.html', context)
-
 class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html'
@@ -29,7 +28,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'category']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -60,6 +59,11 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+def cat_posts(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    posts = Post.objects.filter(category = category)
+    return render(request, 'blog/cat_posts.html', {'posts':posts})
 
 
 def about(request):

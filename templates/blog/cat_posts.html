@@ -13,23 +13,19 @@
 
     <div class="row">
         <div class="col-md-8">
+            {% for post in posts%}
             <div class="row g-0 border rounded overflow-hidden  mb-4 shadow-sm ">
                 <div class="col-1">
                     <img class="bd-placeholder-img rounded-circle p-3" style="height:90px;" src="{{post.author.profile.image.url}}" alt="">
                 </div>
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-success">Author: {{post.author}}</strong>
-                    <h3 class="mb-0">{{post.title}} </h3>
-                    <div class="mb-1 text-muted"> <small>{{post.date_posted}}</small></div>
-                    <p class="mb-auto">{{post.content}}</p>
-                    {% if post.author == user %}
-                    <div class="d-flex">
-                    <a href="{% url 'blog:update' post.id %}"><button class="btn btn-sm btn-info m-2">Edit</button></a>
-                    <a href="{% url 'blog:delete' post.id %}"><button class="btn btn-sm btn-danger m-2">Delete</button></a>
-                    </div>
-                    {% endif %}
+                    <strong class="d-inline-block mb-2 text-success">{{post.author}}</strong>
+                    <a href="{% url 'blog:show' post.id%}"><h3 class="mb-0">{{post.title}} </h3></a>
+                    <div class="mb-1 text-muted"> {{post.date_posted}}</div>
+                    <a href="{% url 'blog:show' post.id%}" class="">Continue reading</a>
                 </div>
             </div>
+            {% endfor %}
         </div>
 
         <div class="col-md-4">

@@ -7,7 +7,7 @@
             <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
             <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and
                 efficiently about what’s most interesting in this post’s contents.</p>
-<!--            <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>-->
+            <!--            <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>-->
         </div>
     </div>
 
@@ -16,11 +16,13 @@
             {% for post in posts%}
             <div class="row g-0 border rounded overflow-hidden  mb-4 shadow-sm ">
                 <div class="col-1">
-                    <img class="bd-placeholder-img rounded-circle p-3" style="height:90px;" src="{{post.author.profile.image.url}}" alt="">
+                    <img class="bd-placeholder-img rounded-circle p-3" style="height:90px;"
+                         src="{{post.author.profile.image.url}}" alt="">
                 </div>
                 <div class="col p-4 d-flex flex-column position-static">
                     <strong class="d-inline-block mb-2 text-success">{{post.author}}</strong>
-                    <a href="{% url 'blog:show' post.id%}"><h3 class="mb-0">{{post.title}} </h3></a>
+                    <a href="{% url 'blog:show' post.id%}" style="text-decoration:none;"><h3 class="mb-0">
+                        {{post.title}} </h3></a>
                     <div class="mb-1 text-muted"> {{post.date_posted}}</div>
                     <a href="{% url 'blog:show' post.id%}" class="">Continue reading</a>
                 </div>
@@ -30,21 +32,13 @@
 
         <div class="col-md-4">
             <div class="p-4">
-                <h4 class="fst-italic">Side Bar</h4>
-                <ol class="list-unstyled mb-0">
-                    <li><a href="#">March 2014</a></li>
-                    <li><a href="#">February 2014</a></li>
-                    <li><a href="#">January 2014</a></li>
-                    <li><a href="#">December 2013</a></li>
-                    <li><a href="#">November 2013</a></li>
-                    <li><a href="#">October 2013</a></li>
-                    <li><a href="#">September 2013</a></li>
-                    <li><a href="#">August 2013</a></li>
-                    <li><a href="#">July 2013</a></li>
-                    <li><a href="#">June 2013</a></li>
-                    <li><a href="#">May 2013</a></li>
-                    <li><a href="#">April 2013</a></li>
-                </ol>
+                <h4 class="fst-italic">Categories</h4>
+                <ul class="list-group list-group-flush">
+                    {% for category in catgs %}
+                    <li><a href="{% url 'blog:cat_posts' category.slug %}" style="text-decoration:none">{{category.name}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
 

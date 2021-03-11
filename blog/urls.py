@@ -11,4 +11,5 @@ urlpatterns=[
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='delete'),
     path('new/', PostCreateView.as_view(), name='create'),
     path('about/', views.about, name = 'blog-about'),
+    path('categories/<slug:slug>/', views.cat_posts, name='cat_posts'),
 ]

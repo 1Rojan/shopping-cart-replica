@@ -63,12 +63,15 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'onlinestore.context_processors.categories',
-                'basket.context_processors.basket'
+                'basket.context_processors.basket',
+                'blog.context_processors.cats',
+
 
             ],
         },

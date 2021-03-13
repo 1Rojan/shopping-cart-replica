@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'basket.apps.BasketConfig',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
-    'crispy_forms'
+    'crispy_forms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

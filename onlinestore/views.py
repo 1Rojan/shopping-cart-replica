@@ -7,6 +7,7 @@ from rest_framework import generics
 
 
 
+
 class ProductListView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -25,7 +26,6 @@ class CategoryListView(generics.ListCreateAPIView):
 class CategoryView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
-
 
 
 

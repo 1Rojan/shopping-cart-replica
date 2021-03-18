@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Category, Product
-from django.http import HttpResponse
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -18,6 +17,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return Category.objects.create(**validated_data)
+
 
 
 

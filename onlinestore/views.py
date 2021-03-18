@@ -16,7 +16,6 @@ from rest_framework import generics
 #     queryset = Category.objects.all()
 #     serializer_class = CategorySerializer
 
-
 class ProductListView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -45,11 +44,6 @@ class CategoryView(generics.RetrieveUpdateDestroyAPIView):
 # class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = Product.objects.all()
 #     serializer_class = ProductSerializer
-
-
-
-
-
 
 def index(request):
     products = Product.objects.all()
